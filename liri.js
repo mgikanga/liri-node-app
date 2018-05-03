@@ -1,6 +1,6 @@
-console.log("i'm here");
-// get access to the keys using dotenv
 
+// get access to the keys using dotenv
+var inputString = process.argv;
 require("dotenv").config();
 // import keys from the keys.js
 var keys = require("./keys.js")
@@ -17,7 +17,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
    
   if (!error) {
       //display the whole tweet body from the response
-    console.log(tweets);
+    //console.log(tweets);
     //return only the tweets and time created by disecting the tweets
     var all = tweets;
     for(var i = 0; i< all.length; i++){
@@ -28,15 +28,21 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
   console.log(error);
 });
  };
- myTweets();
+
 
  //function that for spotify 
  function mySongs(){
+     // variable for when user search for song
+     var song = inputString[3];
      //search by track parameter
- spotify.search({ type: 'track', query: 'The Sign' })
+     if( inputString[3] === undefined ){
+         song = "Wanted"
+     }
+    
+ spotify.search({ type: 'track', query: song })
   .then(function(response) {
     //display the whole data
-    console.log(response.tracks.items[0]);
+    //console.log(response.tracks.items[0]);
     // recover the track artists name preview link and album by discecting the response
     var alb = response.tracks.items[0].artists;
     for(var i = 0; i< alb.length; i++){
@@ -50,19 +56,31 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
     console.log(err);
   });
 }
-//mySongs();
+
 
 // function to display movies
 function myMovie(){
     // include the request npm package
     var request = require("request");
 
+
 // Then run a request to the OMDB API with the movie 
-request("http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy", function(error, response, body) {
+var query = "http://www.omdbapi.com/?t="
+// get the movie from the user
+var movie = inputString[3];
+// when user doesn't input anything
+if( inputString[3] === undefined ){
+    movie = "Mr.Nobody"
+}
+
+var key = "&y=&plot=short&apikey=trilogy"
+var mQuery = query+ movie+ key;
+request(mQuery, function(error, response, body) {
 
   // If the request is successful (i.e. if the response status code is 200)
   if (!error && response.statusCode === 200) {
-    console.log(body)
+      //display the whole body so that you can view the details
+    //console.log(body)
     // Parse the body of the site and recover just the required details
  
     console.log("Title : " +JSON.parse(body).Title + "\nYear: " +JSON.parse(body).Year +"\nIMDBRating: "+ JSON.parse(body).imdbRating +"\nRating: " + 
@@ -72,4 +90,19 @@ request("http://www.omdbapi.com/?t=mr+nobody&y=&plot=short&apikey=trilogy", func
   }
 });
 }
-//myMovie();
+
+
+// node commands
+var inputString = process.argv;
+var command = inputString[2];
+// command to display tweets
+if (command === 'my-tweets'){
+    myTweets();
+} 
+//command to display song name, artist, album and preview link
+else if( command === 'spotify-this-song'){
+mySongs();
+}
+else if( command === 'movie-this'){
+myMovie();
+}
