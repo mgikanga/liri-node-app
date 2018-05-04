@@ -26,8 +26,7 @@ function myTweets() {
                 //write the output in the log.txt file
              var fs = require("fs");
 
-             // This block of code will create a file called "movies.txt".
-             // It will then print "Inception, Die Hard" in the file
+             // It will then print the output in the log.txt file
              fs.appendFile("log.txt", output, function(err) {
              
                // If the code experiences any errors it will log the error to the console.
@@ -36,7 +35,7 @@ function myTweets() {
                }
              
                // Otherwise, it will print: "log.txt was updated!"
-               console.log("log.txt was updated!");
+             
              
              });
              
@@ -73,8 +72,8 @@ function mySongs() {
              //write the output in the log.txt file
              var fs = require("fs");
 
-             // This block of code will create a file called "movies.txt".
-             // It will then print "Inception, Die Hard" in the file
+             
+             // It will then print all the output into the log.txt file
              fs.appendFile("log.txt", output, function(err) {
              
                // If the code experiences any errors it will log the error to the console.
@@ -122,14 +121,14 @@ function myMovie() {
             // Parse the body of the site and recover just the required details
 
             var output = "Title : " + JSON.parse(body).Title + "\nYear: " + JSON.parse(body).Year + "\nIMDBRating: " + JSON.parse(body).imdbRating + "\nRating: " +
-                JSON.parse(body).Ratings + "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + "\nPlot: " + JSON.parse(body).Plot +
+                JSON.parse(body).Ratings[2].value + "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + "\nPlot: " + JSON.parse(body).Plot +
                 "\nActors: " + JSON.parse(body).Actors;
                 console.log(output)
                 //write the output in the log.txt file
                 var fs = require("fs");
 
-// This block of code will create a file called "movies.txt".
-// It will then print "Inception, Die Hard" in the file
+
+// It will then print the output into the log.txt file
 fs.appendFile("log.txt", output, function(err) {
 
   // If the code experiences any errors it will log the error to the console.
