@@ -28,7 +28,7 @@ function myTweets() {
 
              // This block of code will create a file called "movies.txt".
              // It will then print "Inception, Die Hard" in the file
-             fs.writeFile("log.txt", output, function(err) {
+             fs.appendFile("log.txt", output, function(err) {
              
                // If the code experiences any errors it will log the error to the console.
                if (err) {
@@ -75,7 +75,7 @@ function mySongs() {
 
              // This block of code will create a file called "movies.txt".
              // It will then print "Inception, Die Hard" in the file
-             fs.writeFile("log.txt", output, function(err) {
+             fs.appendFile("log.txt", output, function(err) {
              
                // If the code experiences any errors it will log the error to the console.
                if (err) {
@@ -118,7 +118,7 @@ function myMovie() {
         // If the request is successful (i.e. if the response status code is 200)
         if (!error && response.statusCode === 200) {
             //display the whole body so that you can view the details
-            //console.log(body)
+            //console.log(JSON.parse(body));
             // Parse the body of the site and recover just the required details
 
             var output = "Title : " + JSON.parse(body).Title + "\nYear: " + JSON.parse(body).Year + "\nIMDBRating: " + JSON.parse(body).imdbRating + "\nRating: " +
@@ -130,7 +130,7 @@ function myMovie() {
 
 // This block of code will create a file called "movies.txt".
 // It will then print "Inception, Die Hard" in the file
-fs.writeFile("log.txt", output, function(err) {
+fs.appendFile("log.txt", output, function(err) {
 
   // If the code experiences any errors it will log the error to the console.
   if (err) {
@@ -148,12 +148,8 @@ fs.writeFile("log.txt", output, function(err) {
 
 //function to read the random.txt
 function readRandom() {
-    // fs is a core Node package for reading and writing files
-    var fs = require("fs");
-
-    // This block of code will read from the "movies.txt" file.
-    // It's important to include the "utf8" parameter or the code will provide stream data (garbage)
-    // The code will store the contents of the reading inside the variable "data"
+ 
+    // The code will store the contents of the reading inside the variable "text"
     fs.readFile("random.txt", "utf8", function (error, text) {
 
         // If the code experiences any errors it will log the error to the console.
