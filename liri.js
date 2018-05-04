@@ -12,7 +12,7 @@ var client = new Twitter(keys.twitter);
 //function for twitter to display 20 tweets
  function myTweets(){
      // variable to store my parameters
-var params = {screen_name: 'nodejs',count: 20};
+var params = {screen_name: 'Janet Garcia',count: 20};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
    
   if (!error) {
@@ -36,7 +36,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
      var song = inputString[3];
      //search by track parameter
      if( inputString[3] === undefined ){
-         song = "Wanted"
+         song = "Started From The Bottom"
      }
     
  spotify.search({ type: 'track', query: song })
@@ -90,19 +90,51 @@ request(mQuery, function(error, response, body) {
   }
 });
 }
+//function to read the random.txt
+function readRandom(){
+// fs is a core Node package for reading and writing files
+var fs = require("fs");
 
+// This block of code will read from the "movies.txt" file.
+// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// The code will store the contents of the reading inside the variable "data"
+fs.readFile("random.txt", "utf8", function(error, text) {
+
+  // If the code experiences any errors it will log the error to the console.
+  if (error) {
+    return console.log(error);
+  }
+
+  // We will then print the contents of data
+  
+  return console.log(text);
+   var song = text;
+   
+   
+});
+}
 
 // node commands
 var inputString = process.argv;
 var command = inputString[2];
 // command to display tweets
 if (command === 'my-tweets'){
+    //call function to display tweets
     myTweets();
 } 
 //command to display song name, artist, album and preview link
 else if( command === 'spotify-this-song'){
+    //call funtion to dislay song details
 mySongs();
 }
 else if( command === 'movie-this'){
+    //call function to display movie details
 myMovie();
 }
+else if( command === 'do-what-it-says'){
+    mySongs()
+    readRandom();
+   
+   
+    }
+   
