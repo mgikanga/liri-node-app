@@ -67,7 +67,7 @@ function mySongs() {
             for (var i = 0; i < alb.length; i++) {
                 console.log("Artist:" + alb[i].name)
             }
-            var output = "Name: " + response.tracks.items[0].name + "\nPreview link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.album_type;
+            var output = "Name: " + response.tracks.items[0].name + "\nPreview link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.name;
             console.log(output);
              //write the output in the log.txt file
              var fs = require("fs");
@@ -121,7 +121,7 @@ function myMovie() {
             // Parse the body of the site and recover just the required details
 
             var output = "Title : " + JSON.parse(body).Title + "\nYear: " + JSON.parse(body).Year + "\nIMDBRating: " + JSON.parse(body).imdbRating + "\nRating: " +
-                JSON.parse(body).Ratings[2].value + "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + "\nPlot: " + JSON.parse(body).Plot +
+                JSON.parse(body).Ratings[1].Value + "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + "\nPlot: " + JSON.parse(body).Plot +
                 "\nActors: " + JSON.parse(body).Actors;
                 console.log(output)
                 //write the output in the log.txt file
