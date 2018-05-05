@@ -147,7 +147,7 @@ fs.appendFile("log.txt", output, function(err) {
 
 //function to read the random.txt
 function readRandom() {
- 
+    var fs = require("fs");
     // The code will store the contents of the reading inside the variable "text"
     fs.readFile("random.txt", "utf8", function (error, text) {
 
